@@ -108,6 +108,8 @@ namespace Principios4DevsClassificacao
                     Console.WriteLine("Apólice não encontrada.");
                     break;
             }
+
+            Console.WriteLine("Classificação completada.");
         }
     }
 }
