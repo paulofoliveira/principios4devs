@@ -8,6 +8,7 @@ namespace Principios4DevsClassificacao
     internal class ClassificacaoServico
     {
         public ConsoleLogger Logger { get; set; } = new ConsoleLogger();
+        public ApoliceArquivoFonte ApoliceFonte { get; set; } = new ApoliceArquivoFonte();
 
         public decimal Classificacao { get; set; }
 
@@ -17,7 +18,7 @@ namespace Principios4DevsClassificacao
 
             Logger.Log("Carregando apólice.");
 
-            var apoliceJson = File.ReadAllText("apolice.json");
+            var apoliceJson = ApoliceFonte.RecuperarApoliceDaFonte();
 
             var apolice = JsonConvert.DeserializeObject<Apolice>(apoliceJson, new StringEnumConverter());
 

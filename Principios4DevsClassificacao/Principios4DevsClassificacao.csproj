@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apolice.cs" />
+    <Compile Include="ApoliceArquivoFonte.cs" />
     <Compile Include="ApoliceTipo.cs" />
     <Compile Include="ClassificacaoServico.cs" />
     <Compile Include="ConsoleLogger.cs" />
