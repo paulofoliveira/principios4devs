@@ -1,25 +1,19 @@
-﻿namespace Principios4DevsClassificacao
+﻿using System;
+
+namespace Principios4DevsClassificacao
 {
     internal class ClassificadorFabrica
     {
         public Classificador Criar(Apolice apolice, ClassificacaoServico servico)
         {
-            switch (apolice.Tipo)
+            try
             {
-                case ApoliceTipo.Vida:
-                    return new VidaClassificador(servico, servico.Logger);
-
-                case ApoliceTipo.Residencia:
-                    return new ResidenciaClassificador(servico, servico.Logger);
-
-                case ApoliceTipo.Automovel:
-                    return new AutoClassificador(servico, servico.Logger);
-
-                case ApoliceTipo.Saude:
-                    return new SaudeClassificador(servico, servico.Logger);
-
-                default:
-                    return null;
+                return (Classificador)Activator.CreateInstance(Type.GetType($"Principios4DevsClassificacao.{apolice.Tipo}Classificador"),
+                    new object[] { servico, servico.Logger });
+            }
+            catch
+            {
+                return null;
             }
         }
     }
