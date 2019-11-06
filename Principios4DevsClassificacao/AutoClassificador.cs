@@ -1,17 +1,13 @@
 ﻿namespace Principios4DevsClassificacao
 {
-    internal class AutoClassificador
+    internal class AutoClassificador : Classificador
     {
-        private readonly ClassificacaoServico _servico;
-        private ConsoleLogger _logger;
-
-        public AutoClassificador(ClassificacaoServico servico, ConsoleLogger logger)
+        public AutoClassificador(ClassificacaoServico servico, ConsoleLogger logger) : base(servico, logger)
         {
-            _servico = servico;
-            _logger = logger;
+
         }
 
-        public void Classificar(Apolice apolice)
+        public override void Classificar(Apolice apolice)
         {
             _logger.Log("Classificando apólice Auto...");
             _logger.Log("Validando apólice.");

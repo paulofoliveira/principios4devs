@@ -2,18 +2,14 @@
 
 namespace Principios4DevsClassificacao
 {
-    internal class VidaClassificador
+    internal class VidaClassificador : Classificador
     {
-        private readonly ClassificacaoServico _servico;
-        private ConsoleLogger _logger;
-
-        public VidaClassificador(ClassificacaoServico servico, ConsoleLogger logger)
+        public VidaClassificador(ClassificacaoServico servico, ConsoleLogger logger) : base(servico, logger)
         {
-            _servico = servico;
-            _logger = logger;
+
         }
 
-        public void Classificar(Apolice apolice)
+        public override void Classificar(Apolice apolice)
         {
             _logger.Log("Classificando apólice Vida...");
             _logger.Log("Validando apólice.");

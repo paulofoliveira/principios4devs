@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Principios4DevsClassificacao
+﻿namespace Principios4DevsClassificacao
 {
     internal class ClassificacaoServico
     {
@@ -19,31 +17,12 @@ namespace Principios4DevsClassificacao
 
             var apolice = Serializador.RecuperarPorJsonString(apoliceJson);
 
-            switch (apolice.Tipo)
-            {
-                case ApoliceTipo.Vida:
+            var fabricaDeClassificadores = new ClassificadorFabrica();
 
-                    var classificador1 = new VidaClassificador(this, Logger);
-                    classificador1.Classificar(apolice);
+            var classificador = fabricaDeClassificadores.Criar(apolice, this);
 
-                    break;
-                case ApoliceTipo.Residencia:
-
-                    var classificador2 = new ResidenciaClassificador(this, Logger);
-                    classificador2.Classificar(apolice);
-
-                    break;
-                case ApoliceTipo.Automovel:
-
-                    var classificador3 = new AutoClassificador(this, Logger);
-                    classificador3.Classificar(apolice);
-
-                    break;
-                default:
-                    Logger.Log("Apólice não encontrada.");
-                    break;
-            }
-
+            classificador.Classificar(apolice);
+          
             Logger.Log("Classificação completada.");
         }
     }
