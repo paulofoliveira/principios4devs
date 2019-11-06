@@ -1,15 +1,12 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.IO;
+﻿using System;
 
 namespace Principios4DevsClassificacao
 {
     internal class ClassificacaoServico
     {
         public ConsoleLogger Logger { get; set; } = new ConsoleLogger();
-        public ApoliceArquivoFonte ApoliceFonte { get; set; } = new ApoliceArquivoFonte();
-
+        public ApoliceArquivoFonte Fonte { get; set; } = new ApoliceArquivoFonte();
+        public ApoliceSerializador Serializador { get; set; } = new ApoliceSerializador();
         public decimal Classificacao { get; set; }
 
         public void Classificar()
@@ -18,9 +15,9 @@ namespace Principios4DevsClassificacao
 
             Logger.Log("Carregando apólice.");
 
-            var apoliceJson = ApoliceFonte.RecuperarApoliceDaFonte();
+            var apoliceJson = Fonte.RecuperarApoliceDaFonte();
 
-            var apolice = JsonConvert.DeserializeObject<Apolice>(apoliceJson, new StringEnumConverter());
+            var apolice = Serializador.RecuperarPorJsonString(apoliceJson);
 
             switch (apolice.Tipo)
             {
