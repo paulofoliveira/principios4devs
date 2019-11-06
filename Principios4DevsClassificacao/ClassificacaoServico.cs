@@ -99,8 +99,8 @@ namespace Principios4DevsClassificacao
                         {
                             Classificacao = 1000m;
                         }
-
-                        Classificacao = 900m;
+                        else
+                            Classificacao = 900m;
                     }
 
                     break;
