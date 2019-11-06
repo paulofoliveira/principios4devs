@@ -13,7 +13,7 @@ namespace Principios4DevsClassificacao
             }
             catch
             {
-                return null;
+                return new DesconhecidoClassificador(servico, servico.Logger);
             }
         }
     }
