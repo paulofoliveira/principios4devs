@@ -49,6 +49,7 @@
     <Compile Include="Apolice.cs" />
     <Compile Include="ApoliceTipo.cs" />
     <Compile Include="ClassificacaoServico.cs" />
+    <Compile Include="ConsoleLogger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

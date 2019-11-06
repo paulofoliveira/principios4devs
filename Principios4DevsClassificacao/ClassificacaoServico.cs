@@ -7,13 +7,15 @@ namespace Principios4DevsClassificacao
 {
     internal class ClassificacaoServico
     {
+        public ConsoleLogger Logger { get; set; } = new ConsoleLogger();
+
         public decimal Classificacao { get; set; }
 
         public void Classificar()
         {
-            Console.WriteLine("Iniciando classificação.");
+            Logger.Log("Iniciando classificação.");
 
-            Console.WriteLine("Carregando apólice.");
+            Logger.Log("Carregando apólice.");
 
             var apoliceJson = File.ReadAllText("apolice.json");
 
@@ -22,24 +24,24 @@ namespace Principios4DevsClassificacao
             switch (apolice.Tipo)
             {
                 case ApoliceTipo.Vida:
-                    Console.WriteLine("Classificando apólice Vida...");
-                    Console.WriteLine("Validando apólice.");
+                    Logger.Log("Classificando apólice Vida...");
+                    Logger.Log("Validando apólice.");
 
                     if (apolice.DataNascimento == DateTime.MinValue)
                     {
-                        Console.WriteLine("Apólice de vida deve conter data de nascimento.");
+                        Logger.Log("Apólice de vida deve conter data de nascimento.");
                         return;
                     }
 
                     if (apolice.DataNascimento < DateTime.Today.AddYears(-100))
                     {
-                        Console.WriteLine("Pessoas centenárias não são permitidas.");
+                        Logger.Log("Pessoas centenárias não são permitidas.");
                         return;
                     }
 
                     if (apolice.Total == 0)
                     {
-                        Console.WriteLine("Apólice de vida deve conter total.");
+                        Logger.Log("Apólice de vida deve conter total.");
                         return;
                     }
 
@@ -65,17 +67,17 @@ namespace Principios4DevsClassificacao
                     break;
                 case ApoliceTipo.Residencia:
 
-                    Console.WriteLine("Classificando apólice Residencia...");
-                    Console.WriteLine("Validando apólice.");
+                    Logger.Log("Classificando apólice Residencia...");
+                    Logger.Log("Validando apólice.");
 
                     if (apolice.ValorTitulo == 0 || apolice.ValorVenal == 0)
                     {
-                        Console.WriteLine("Apólice Residencia deve especificar um valor de título ou valor venal.");
+                        Logger.Log("Apólice Residencia deve especificar um valor de título ou valor venal.");
                         return;
                     }
                     if (apolice.ValorTitulo < 0.8m * apolice.ValorVenal)
                     {
-                        Console.WriteLine("Valor insuficiente.");
+                        Logger.Log("Valor insuficiente.");
                         return;
                     }
 
@@ -84,12 +86,12 @@ namespace Principios4DevsClassificacao
                     break;
                 case ApoliceTipo.Automovel:
 
-                    Console.WriteLine("Classificando apólice Auto...");
-                    Console.WriteLine("Validando apólice.");
+                    Logger.Log("Classificando apólice Auto...");
+                    Logger.Log("Validando apólice.");
 
                     if (string.IsNullOrEmpty(apolice.Marca))
                     {
-                        Console.WriteLine("Apólice Auto deve especificar uma marca.");
+                        Logger.Log("Apólice Auto deve especificar uma marca.");
                         return;
                     }
 
@@ -105,11 +107,11 @@ namespace Principios4DevsClassificacao
 
                     break;
                 default:
-                    Console.WriteLine("Apólice não encontrada.");
+                    Logger.Log("Apólice não encontrada.");
                     break;
             }
 
-            Console.WriteLine("Classificação completada.");
+            Logger.Log("Classificação completada.");
         }
     }
 }
