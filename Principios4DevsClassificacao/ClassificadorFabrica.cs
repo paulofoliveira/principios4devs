@@ -15,6 +15,9 @@
                 case ApoliceTipo.Automovel:
                     return new AutoClassificador(servico, servico.Logger);
 
+                case ApoliceTipo.Saude:
+                    return new SaudeClassificador(servico, servico.Logger);
+
                 default:
                     return null;
             }

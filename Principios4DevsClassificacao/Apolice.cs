@@ -33,5 +33,11 @@ namespace Principios4DevsClassificacao
 
         #endregion
 
+        #region Saude
+        public int QtdVidas { get; set; }
+        public bool Cooparticipacao { get; set; }
+
+        #endregion
+
     }
 }

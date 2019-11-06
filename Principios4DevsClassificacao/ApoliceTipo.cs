@@ -4,6 +4,7 @@
     {
         Vida = 0,
         Residencia = 1,
-        Automovel = 2
+        Automovel = 2,
+        Saude = 3
     }
 }

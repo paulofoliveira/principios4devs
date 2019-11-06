@@ -58,6 +58,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResidenciaClassificador.cs" />
+    <Compile Include="SaudeClassificador.cs" />
     <Compile Include="VidaClassificador.cs" />
   </ItemGroup>
   <ItemGroup>
