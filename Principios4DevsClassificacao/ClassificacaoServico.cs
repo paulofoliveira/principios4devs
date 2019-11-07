@@ -2,28 +2,30 @@
 {
     internal class ClassificacaoServico
     {
-        public ConsoleLogger Logger { get; set; } = new ConsoleLogger();
-        public ApoliceArquivoFonte Fonte { get; set; } = new ApoliceArquivoFonte();
-        public ApoliceSerializador Serializador { get; set; } = new ApoliceSerializador();
+        public ClassificacaoServico()
+        {
+            Contexto.Servico = this;
+        }
+
+        public IClassificacaoContexto Contexto { get; set; } = new ClassificacaoPadraoContexto();
+        
         public decimal Classificacao { get; set; }
 
         public void Classificar()
-        {
-            Logger.Log("Iniciando classificação.");
+        {         
+            Contexto.Log("Iniciando classificação.");
 
-            Logger.Log("Carregando apólice.");
+            Contexto.Log("Carregando apólice.");
 
-            var apoliceJson = Fonte.RecuperarApoliceDaFonte();
+            var apoliceJson = Contexto.RecuperarApoliceDaFonte();
 
-            var apolice = Serializador.RecuperarPorJsonString(apoliceJson);
+            var apolice = Contexto.RecuperarPorJsonString(apoliceJson);
 
-            var fabricaDeClassificadores = new ClassificadorFabrica();
-
-            var classificador = fabricaDeClassificadores.Criar(apolice, this);
+            var classificador = Contexto.CriarClassificadorPorApolice(apolice, Contexto);
 
             classificador.Classificar(apolice);
-          
-            Logger.Log("Classificação completada.");
+
+            Contexto.Log("Classificação completada.");
         }
     }
 }

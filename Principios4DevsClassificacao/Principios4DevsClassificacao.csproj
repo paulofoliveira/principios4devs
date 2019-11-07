@@ -51,11 +51,14 @@
     <Compile Include="ApoliceSerializador.cs" />
     <Compile Include="ApoliceTipo.cs" />
     <Compile Include="AutoClassificador.cs" />
+    <Compile Include="ClassificacaoPadraoContexto.cs" />
     <Compile Include="ClassificacaoServico.cs" />
     <Compile Include="Classificador.cs" />
     <Compile Include="ClassificadorFabrica.cs" />
     <Compile Include="ConsoleLogger.cs" />
     <Compile Include="DesconhecidoClassificador.cs" />
+    <Compile Include="IClassificacaoContexto.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResidenciaClassificador.cs" />

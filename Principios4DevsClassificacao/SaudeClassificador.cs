@@ -1,27 +1,25 @@
-﻿using System;
-
-namespace Principios4DevsClassificacao
+﻿namespace Principios4DevsClassificacao
 {
     internal class SaudeClassificador : Classificador
     {
-        public SaudeClassificador(ClassificacaoServico servico, ConsoleLogger logger) : base(servico, logger)
+        public SaudeClassificador(IClassificacaoContexto contexto) : base(contexto)
         {
         }
 
         public override void Classificar(Apolice apolice)
         {
-            _logger.Log("Classificando apólice Saúde...");
-            _logger.Log("Validando apólice.");
+            _contexto.Log("Classificando apólice Saúde...");
+            _contexto.Log("Validando apólice.");
 
             if (apolice.QtdVidas == 0)
             {
-                _logger.Log("Apólice Saúde deve conter uma quantidade de vidas.");
+                _contexto.Log("Apólice Saúde deve conter uma quantidade de vidas.");
                 return;
             }
 
             var fator = apolice.Cooparticipacao ? 0.25 : 0;
 
-            _servico.Classificacao = (100m * apolice.QtdVidas) * (decimal)(1d + fator);
+            _contexto.Servico.Classificacao = (100m * apolice.QtdVidas) * (decimal)(1d + fator);
         }
     }
 }

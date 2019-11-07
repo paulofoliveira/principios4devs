@@ -2,13 +2,13 @@
 {
     internal class DesconhecidoClassificador : Classificador
     {
-        public DesconhecidoClassificador(ClassificacaoServico servico, ConsoleLogger logger) : base(servico, logger)
+        public DesconhecidoClassificador(IClassificacaoContexto contexto) : base(contexto)
         {
         }
 
         public override void Classificar(Apolice apolice)
         {
-            _logger.Log("Tipo de apólice desconhecida.");
+            _contexto.Log("Tipo de apólice desconhecida.");
         }
     }
 }

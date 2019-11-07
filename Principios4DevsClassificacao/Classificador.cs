@@ -2,13 +2,11 @@
 {
     internal abstract class Classificador
     {
-        protected readonly ClassificacaoServico _servico;
-        protected ConsoleLogger _logger;
+        protected readonly IClassificacaoContexto _contexto;
 
-        public Classificador(ClassificacaoServico servico, ConsoleLogger logger)
+        public Classificador(IClassificacaoContexto contexto)
         {
-            _servico = servico;
-            _logger = logger;
+            _contexto = contexto;
         }
 
         public abstract void Classificar(Apolice apolice);

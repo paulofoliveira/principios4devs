@@ -4,31 +4,31 @@ namespace Principios4DevsClassificacao
 {
     internal class VidaClassificador : Classificador
     {
-        public VidaClassificador(ClassificacaoServico servico, ConsoleLogger logger) : base(servico, logger)
+        public VidaClassificador(IClassificacaoContexto contexto) : base(contexto)
         {
 
         }
 
         public override void Classificar(Apolice apolice)
         {
-            _logger.Log("Classificando apólice Vida...");
-            _logger.Log("Validando apólice.");
+            _contexto.Log("Classificando apólice Vida...");
+            _contexto.Log("Validando apólice.");
 
             if (apolice.DataNascimento == DateTime.MinValue)
             {
-                _logger.Log("Apólice de vida deve conter data de nascimento.");
+                _contexto.Log("Apólice de vida deve conter data de nascimento.");
                 return;
             }
 
             if (apolice.DataNascimento < DateTime.Today.AddYears(-100))
             {
-                _logger.Log("Pessoas centenárias não são permitidas.");
+                _contexto.Log("Pessoas centenárias não são permitidas.");
                 return;
             }
 
             if (apolice.Total == 0)
             {
-                _logger.Log("Apólice de vida deve conter total.");
+                _contexto.Log("Apólice de vida deve conter total.");
                 return;
             }
 
@@ -45,11 +45,11 @@ namespace Principios4DevsClassificacao
 
             if (apolice.Fumante)
             {
-                _servico.Classificacao = baseClassificacao * 2;
+                _contexto.Servico.Classificacao = baseClassificacao * 2;
                 return;
             }
 
-            _servico.Classificacao = baseClassificacao;
+            _contexto.Servico.Classificacao = baseClassificacao;
         }
     }
 }
