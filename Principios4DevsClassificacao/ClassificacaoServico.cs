@@ -2,20 +2,28 @@
 {
     internal class ClassificacaoServico
     {
-        public ClassificacaoServico()
+        private readonly ILogger _logger;
+
+        public ClassificacaoServico(ILogger logger)
         {
             Contexto.Servico = this;
+            _logger = logger;
         }
 
+        //public ClassificacaoServico() : this(new ConsoleLogger())
+        //{
+
+        //}
+
         public IClassificacaoContexto Contexto { get; set; } = new ClassificacaoPadraoContexto();
-        
+
         public decimal Classificacao { get; set; }
 
         public void Classificar()
-        {         
-            Contexto.Log("Iniciando classificação.");
+        {
+            _logger.Log("Iniciando classificação.");
 
-            Contexto.Log("Carregando apólice.");
+            _logger.Log("Carregando apólice.");
 
             var apoliceJson = Contexto.RecuperarApoliceDaFonte();
 
@@ -25,7 +33,7 @@
 
             classificador.Classificar(apolice);
 
-            Contexto.Log("Classificação completada.");
+            _logger.Log("Classificação completada.");
         }
     }
 }

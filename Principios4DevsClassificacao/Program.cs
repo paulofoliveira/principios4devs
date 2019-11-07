@@ -8,7 +8,7 @@ namespace Principios4DevsClassificacao
         {
             Console.WriteLine("Principios4DevsClassificacao iniciando...");
 
-            var servico = new ClassificacaoServico();
+            var servico = new ClassificacaoServico(new ConsoleLogger());
 
             servico.Classificar();
 
